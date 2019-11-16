@@ -6,7 +6,7 @@ import os
 class BaseTrainer():
     def __init__(self, opt):
         self.opt = opt
-        self.isTrain = False;
+        self.isTrain = False
         if self.opt['cuda'] == True:
             self.use_cuda = True
             print('Using Cuda\n') 
@@ -19,7 +19,7 @@ class BaseTrainer():
         self.use_spacy = 'SPACY_FEATURE' in self.opt
         self.opt['logFile'] = 'log.txt'
 
-        opt['FEATURE_FOLDER'] = '../source/qva_SDNet_task_1/' + self.opt['source_dir'] + '/'
+        opt['FEATURE_FOLDER'] = 'source/qva_SDNet_task_1/' + self.opt['source_dir'] + '/'
         opt['FEATURE_FOLDER'] = os.path.join(opt['datadir'], opt['FEATURE_FOLDER'])
 
     def log(self, s):

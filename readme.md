@@ -11,7 +11,7 @@ The directory structure is as follows:
   - Utils
   - source
     - qva_SDNet_task_1
-      (Download the [preprocessed file archive](https://drive.google.com/open?id=1R8vqKfrLnWRoHY_wHJJw-VPaHHQlw5O9) and extract it into this folder.)
+      (Download the [preprocessed train and test files](https://drive.google.com/open?id=1R8vqKfrLnWRoHY_wHJJw-VPaHHQlw5O9) and extract it into this folder.)
     - bert-base-uncased
       - bert_config.json
       - pytorch_model.bin

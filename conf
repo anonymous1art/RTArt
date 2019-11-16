@@ -1,6 +1,6 @@
 RESUME
 MODEL_PATH conf~/run_3/f1_max_best_model.pt
-TRAIN_FILE	../source/json/ST_Text_train_OCR_OD_BU_PA_TS_PM.msgpack
+TRAIN_FILE	source/json/ST_Text_train_OCR_OD_BU_PA_TS_PM.msgpack
 ans_threshold 0.5
 PREV_ANS	2
 PREV_QUES	2
@@ -15,8 +15,8 @@ dropout_emb	0.4
 
 LOCK_BERT
 BERT_LINEAR_COMBINE
-BERT_tokenizer_file   ../../source/BERT/bert-base-uncased/vocab.txt
-BERT_model_file ../../source/BERT/bert-base-uncased/
+BERT_tokenizer_file   source/BERT/bert-base-uncased/vocab.txt
+BERT_model_file source/BERT/bert-base-uncased/
 
 SEED	1033
 SPACY_FEATURE
@@ -68,7 +68,7 @@ loss    binaryCE
 BuildTestVocabulary
 ocr_name_list    ocr_PMTD_ASTER#ocr_PMTD_ASTER_gram2
 Task    test_task3
-OFFICIAL_TEST_FILE  ../../source2/json/ST_Text_test_just_for_preprocess_OCR_OD_BU_PA_TS_PM.json
+OFFICIAL_TEST_FILE  source/json/ST_Text_test_just_for_preprocess_OCR_OD_BU_PA_TS_PM.json
 preprocess_ocr_name OCR#ocr_PMTD_ASTER
 preprocess_od_name OD#OD_bottom-up
 

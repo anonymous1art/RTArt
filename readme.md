@@ -1,5 +1,5 @@
 # RTArt
-## Download BERT model
+## Directory structure
 Download pytorch [bert-base-uncased](https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased.tar.gz) model from huggingface, then extract it into #root/source, where #root is the code root folder.
 
 The directory structure is as follows:

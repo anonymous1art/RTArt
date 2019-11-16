@@ -1,5 +1,5 @@
 RESUME
-MODEL_PATH conf~/f1_max_best_model.pt
+MODEL_PATH conf~/run_3/f1_max_best_model.pt
 TRAIN_FILE	../source/json/ST_Text_train_OCR_OD_BU_PA_TS_PM.msgpack
 ans_threshold 0.5
 PREV_ANS	2
@@ -23,7 +23,7 @@ SPACY_FEATURE
 CONTEXT_RNN_HIDDEN_DIM	300
 
 MAX_WORD_PER_SENTENCE	30
-INIT_WORD_EMBEDDING_FILE	../../source/glove/glove.840B.300d.txt
+INIT_WORD_EMBEDDING_FILE ./glove
 MINI_BATCH	32
 EPOCH	30
 

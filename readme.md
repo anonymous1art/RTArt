@@ -6,12 +6,12 @@ The directory structure is as follows:
 - RTArt
   - conf~
     - model
-    Downlod the [pretrained RTArt model](https://drive.google.com/open?id=1UG3lPWmI2jbMq4ov-3mC40Wca9dP8Ldl) to this folder.
+    (Downlod the [pretrained RTArt model](https://drive.google.com/open?id=1UG3lPWmI2jbMq4ov-3mC40Wca9dP8Ldl) to this folder.)
   - Models
   - Utils
   - source
     - qva_SDNet_task_1
-      Download the [preprocessed file archive](https://drive.google.com/open?id=1R8vqKfrLnWRoHY_wHJJw-VPaHHQlw5O9) and extract it into this folder.
+      (Download the [preprocessed file archive](https://drive.google.com/open?id=1R8vqKfrLnWRoHY_wHJJw-VPaHHQlw5O9) and extract it into this folder.)
     - bert-base-uncased
       - bert_config.json
       - pytorch_model.bin

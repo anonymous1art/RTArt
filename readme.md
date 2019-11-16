@@ -29,4 +29,4 @@ pip3 install -r requiresments.txt
 cd #root
 python main_test.py
 ```
-The result of ST-VQA task3 test will be save in conf~/run_3/test_f1_max_best_model_submission.json
+The result of ST-VQA task3 test will be saved in conf~/run_3/test_f1_max_best_model_submission.json

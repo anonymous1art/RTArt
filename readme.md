@@ -1,18 +1,17 @@
 # Guide
-The implementation of our model RTArt is based on the The implementation of our model RTArt is based on the PyTorch implementation of SDNet.
 ## Download BERT model
 Download pytorch [bert-base-uncased](https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased.tar.gz) model from huggingface, then extract it into #root/source, where #root is the code root folder.
 
 The directory structure is as follows:
-- submit-code
+- RTArt
   - conf~
-    - run_1
-      - #TODO
+    - run_3
+      - the model weight file
   - Models
   - Utils
   - source
     - qva_SDNet_task_1
-      - #TODO
+      - qva_SDNet_task_1.7z shoud be unzipped here
     - bert-base-uncased
       - bert_config.json
       - pytorch_model.bin
@@ -30,4 +29,4 @@ pip3 install -r requiresments.txt
 cd #root
 python main_test.py
 ```
-result will be save in conf~/run_1/#TODO
+The result of ST-VQA task3 test will be save in conf~/run_3/test_f1_max_best_model_submission.json

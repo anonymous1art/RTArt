@@ -1,6 +1,3 @@
-# Copyright (c) Microsoft Corporation.
-# Licensed under the MIT license.
-
 """
     This file takes a CoQA data file as input and generates the input files for training the QA model.
 """

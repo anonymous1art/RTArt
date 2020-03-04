@@ -6,7 +6,7 @@ The directory structure is as follows:
 - RUArt
   - conf~
     - model
-    (Downlod the [pretrained RTArt model](https://drive.google.com/open?id=1UG3lPWmI2jbMq4ov-3mC40Wca9dP8Ldl) to this folder.)
+    (Downlod the [pretrained RUArt model](https://drive.google.com/open?id=1UG3lPWmI2jbMq4ov-3mC40Wca9dP8Ldl) to this folder.)
   - Models
   - Utils
   - source

@@ -1,9 +1,9 @@
-# RTArt
+# RUArt
 ## Directory structure
 Download pytorch [bert-base-uncased](https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased.tar.gz) model from huggingface, then extract it into #root/source, where #root is the code root folder.
 
 The directory structure is as follows:
-- RTArt
+- RUArt
   - conf~
     - model
     (Downlod the [pretrained RTArt model](https://drive.google.com/open?id=1UG3lPWmI2jbMq4ov-3mC40Wca9dP8Ldl) to this folder.)

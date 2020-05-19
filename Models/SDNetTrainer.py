@@ -229,7 +229,7 @@ class SDNetTrainer(BaseTrainer):
             res.append(item)
         return res
     def predict_for_test(self): 
-        self.reture_att_score = 'att_score' in self.opt#jin
+        self.reture_att_score = 'att_score' in self.opt
         self.isTrain = False
         self.getSaveFolder()
         self.vocab, self.char_vocab, vocab_embedding = self.preproc.load_data()

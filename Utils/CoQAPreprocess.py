@@ -495,7 +495,7 @@ class CoQAPreprocess():
             all_embedding['fast_embedding'] = fast_embedding
             self.opt['vocab_size'] = fast_embedding.size(0)
             self.opt['vocab_dim'] = fast_embedding.size(1)
-        if 'PHOC' in self.opt: # added by jin
+        if 'PHOC' in self.opt:
             phoc_embedding = torch.Tensor(meta['phoc_embedding'])
             all_embedding['phoc_embedding'] = phoc_embedding
         return meta['vocab'], meta['char_vocab'], all_embedding

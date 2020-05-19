@@ -6,12 +6,12 @@ The directory structure is as follows:
 - RUArt
   - conf~
     - model
-    (Downlod the [pretrained RUArt model](https://drive.google.com/open?id=1UG3lPWmI2jbMq4ov-3mC40Wca9dP8Ldl) to this folder.)
+    (Downlod the [pretrained RUArt model](https://drive.google.com/open?id=1T-JViYKu9iNdcKHjRTGxYFAA9vunmWAz) to this folder.)
   - Models
   - Utils
   - source
     - data
-      (Download the [preprocessed training and test files](https://drive.google.com/open?id=1R8vqKfrLnWRoHY_wHJJw-VPaHHQlw5O9) and extract it into this folder.)
+      (Download the [preprocessed training and test files](https://drive.google.com/open?id=1UNEFmatxclidwQAXOpCjDbuV6FVbXv7H) and extract it into this folder.)
     - bert-base-uncased
       - bert_config.json
       - pytorch_model.bin

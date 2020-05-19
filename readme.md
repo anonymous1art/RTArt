@@ -10,13 +10,14 @@ The directory structure is as follows:
   - Models
   - Utils
   - source
-    - qva_SDNet_task_1
+    - data
       (Download the [preprocessed training and test files](https://drive.google.com/open?id=1R8vqKfrLnWRoHY_wHJJw-VPaHHQlw5O9) and extract it into this folder.)
     - bert-base-uncased
       - bert_config.json
       - pytorch_model.bin
       - vocab.txt
-  - conf
+  - conf_stvqa
+  - main.py
   - main_test.py
   - readme.md
 ## Requirements
@@ -29,4 +30,4 @@ pip3 install -r requiresments.txt
 cd #root
 python main_test.py
 ```
-The result of ST-VQA task3 test will be saved in conf~/model/test_f1_max_best_model_submission.json
+The result of ST-VQA task3 test will be saved in conf~/model/submission.json

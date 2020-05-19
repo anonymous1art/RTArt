@@ -17,7 +17,7 @@ class BaseTrainer():
         self.use_spacy = 'SPACY_FEATURE' in self.opt
         self.opt['logFile'] = 'log.txt'
 
-        opt['FEATURE_FOLDER'] = '../source/data/' + self.opt['source_dir'] + '/'
+        opt['FEATURE_FOLDER'] = './source/data/' + self.opt['source_dir'] + '/'
         opt['FEATURE_FOLDER'] = os.path.join(opt['datadir'], opt['FEATURE_FOLDER'])
 
     def log(self, s):

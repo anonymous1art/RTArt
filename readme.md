@@ -16,8 +16,7 @@ The directory structure is as follows:
       - bert_config.json
       - pytorch_model.bin
       - vocab.txt
-  - conf_stvqa
-  - main.py
+  - conf
   - main_test.py
   - readme.md
 ## Requirements

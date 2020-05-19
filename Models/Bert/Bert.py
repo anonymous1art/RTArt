@@ -3,6 +3,8 @@ import torch
 import torch.nn as nn
 from torch.autograd import Variable
 from Models.Bert.modeling import BertModel
+import logging
+log = logging.getLogger(__name__)
 
 '''
     BERT    
@@ -13,6 +15,11 @@ class Bert(nn.Module):
         print('Loading BERT model...')
         self.BERT_MAX_LEN = 512
         self.linear_combine = 'BERT_LINEAR_COMBINE' in opt
+        if 'BERT_MAX_BatchSize' in opt:
+            self.BERT_MAX_BS = opt['BERT_MAX_BatchSize']
+            log.info('split bert embedding with BatchSize {}'.format(self.BERT_MAX_BS))
+        else :
+            self.BERT_MAX_BS = None
         
         if 'BERT_LARGE' in opt:
             # print('Using BERT Large model')
@@ -44,10 +51,43 @@ class Bert(nn.Module):
             Output:
               embedding: batch * max_real_word_num * bert_dim
     '''
-    def forward(self, x_bert, x_bert_mask, x_bert_offset, x_mask):
-        if self.linear_combine:
-            return self.combine_forward(x_bert, x_bert_mask, x_bert_offset, x_mask)
-
+    def forward(self, x_bert, x_bert_mask, x_bert_offset, x_mask, device=None):
+        # while x_bert.size(0) < 5000:
+        #     x_bert = torch.cat([x_bert, x_bert], dim=0)
+        #     x_bert_mask = torch.cat([x_bert_mask, x_bert_mask], dim=0)
+        #     x_bert_offset = torch.cat([x_bert_offset, x_bert_offset], dim=0)
+        #     x_mask = torch.cat([x_mask, x_mask], dim=0)
+        batch_size = x_bert.size(0)
+        # log.debug('x_bert: '+str(x_bert.size()))
+        # split_flag = True
+        if self.BERT_MAX_BS != None:
+            st = 0
+            res = []
+            log.debug('x_bert:{} x_bert_mask:{} x_mask:{}'.format(x_bert.size(), x_bert_mask.size(), x_mask.size()))
+            while st < batch_size:
+                ed = min(st+self.BERT_MAX_BS, batch_size)
+                if self.linear_combine:
+                    res.append(self.combine_forward(x_bert[st:ed], x_bert_mask[st:ed], x_bert_offset[st:ed], x_mask[st:ed], device=device))
+                else:
+                    res.append(self.original_forward(x_bert[st:ed], x_bert_mask[st:ed], x_bert_offset[st:ed], x_mask[st:ed], device=device))
+                st += self.BERT_MAX_BS
+            if self.linear_combine:
+                out = []
+                for i in range(len(res[0])):
+                    out.append(torch.cat([res[t][i] for t in range(len(res))], dim=0))
+                # log.debug('output[0]:{}'.format(out[0].size()))
+                return out
+            else:
+                out = torch.cat(res, dim=0)
+                # log.debug('output:{}'.format(out.size()))
+                return out
+        else:
+            if self.linear_combine:
+                return self.combine_forward(x_bert, x_bert_mask, x_bert_offset, x_mask, device=device)
+            else:
+                return self.original_forward(x_bert, x_bert_mask, x_bert_offset, x_mask, device=device)
+        # assert False
+    def original_forward(self, x_bert, x_bert_mask, x_bert_offset, x_mask, device=None):
         last_layers = []
         bert_sent_len = x_bert.shape[1]
         p = 0
@@ -58,7 +98,10 @@ class Bert(nn.Module):
 
         bert_embedding = torch.cat(last_layers, 1)
         if x_bert_offset == None:
-            return bert_embedding.cuda()
+            if device != None:
+                return bert_embedding.to(device)
+            else:
+                return bert_embedding.cuda()
         
         batch_size = x_mask.shape[0]
         max_word_num = x_mask.shape[1]
@@ -67,8 +110,8 @@ class Bert(nn.Module):
             for j in range(max_word_num):
                 if x_mask[i, j] == 0:
                     continue
-                st = x_bert_offset[i, j, 0]    
-                ed = x_bert_offset[i, j, 1]
+                st = x_bert_offset[i][j][0]    
+                ed = x_bert_offset[i][j][1]
                 # we can also try using st only, ed only
                 if st + 1 == ed: # including st==ed
                     output[i, j, :] = bert_embedding[i, st, :]
@@ -76,11 +119,13 @@ class Bert(nn.Module):
                     subword_ebd_sum = torch.sum(bert_embedding[i, st:ed, :], dim = 0)
                     if st < ed:
                         output[i, j, :] = subword_ebd_sum / float(ed - st) # dim 0 is st:ed
-
-        output = output.cuda()        
+        if device != None:
+            output = output.to(device)
+        else:
+            output = output.cuda()        
         return output
 
-    def combine_forward(self, x_bert, x_bert_mask, x_bert_offset, x_mask):
+    def combine_forward(self, x_bert, x_bert_mask, x_bert_offset, x_mask, device=None):
         all_layers = []
 
         bert_sent_len = x_bert.shape[1]
@@ -107,8 +152,8 @@ class Bert(nn.Module):
             for j in range(max_word_num):
                 if x_mask[i, j] == 0:
                     continue
-                st = x_bert_offset[i, j, 0]    
-                ed = x_bert_offset[i, j, 1]
+                st = x_bert_offset[i][j][0]    
+                ed = x_bert_offset[i][j][1]
                 # we can also try using st only, ed only
                 if st + 1 == ed: # including st==ed
                     output[i, j, :] = bert_embedding[i, st, :]
@@ -120,7 +165,10 @@ class Bert(nn.Module):
         outputs = []
         for i in range(self.bert_layer):
             now = output[:, :, (i * self.bert_dim) : ((i + 1) * self.bert_dim)]
-            now = now.cuda()
+            if device != None:
+                now = now.to(device)
+            else:
+                now = now.cuda()
             outputs.append(now)
 
         return outputs

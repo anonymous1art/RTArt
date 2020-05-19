@@ -23,7 +23,7 @@ class SDNet(nn.Module):
         print('SDNet model\n')
         self.opt = opt
         self.vocab_dim = 300
-        if 'PHOC' in self.opt: #added by jin
+        if 'PHOC' in self.opt:
             phoc_embedding = embedding['phoc_embedding']
         if 'FastText' in self.opt:
             fast_embedding = embedding['fast_embedding']
@@ -48,13 +48,13 @@ class SDNet(nn.Module):
         x_input_size = 0
         ques_input_size = 0
 
-        if 'PHOC' in self.opt: #added by jin
+        if 'PHOC' in self.opt:
             self.vocab_size = int(opt['vocab_size'])
             self.phoc_dim = int(opt['phoc_dim'])
             self.phoc_embed = nn.Embedding(self.vocab_size, self.phoc_dim, padding_idx = 1)
             self.phoc_embed.weight.data = phoc_embedding
 
-        if 'FastText' in self.opt: #added by jin
+        if 'FastText' in self.opt
             self.vocab_size = int(opt['vocab_size'])
             self.fast_dim = int(opt['fast_dim'])
             self.fast_embed = nn.Embedding(self.vocab_size, self.fast_dim, padding_idx = 1)
@@ -157,7 +157,7 @@ class SDNet(nn.Module):
         print('After Input LSTM, the vector_sizes [doc, query] are [', context_rnn_output_size, ques_rnn_output_size, '] *', opt['in_rnn_layers'])
 
         # Deep inter-attention
-        if ('GLOVE' not in self.opt) and ('FastText' not in self.opt): # need find
+        if ('GLOVE' not in self.opt) and ('FastText' not in self.opt):
             _word_hidden_size = 0
         else:
             _word_hidden_size = multi2one_output_size + addtional_feat
@@ -438,13 +438,13 @@ class SDNet(nn.Module):
 
     def get_embedding_from_list(self, item_list, embedding_names, initial_embed):
         emb_list = []
-        if 'phoc' in embedding_names: #added by jin
+        if 'phoc' in embedding_names: 
             phoc_emb = self.phoc_embed(item_list['phoc'])
             if 'dropout_emb' in self.opt:
                 emb_list.append(dropout(phoc_emb, p=self.opt['dropout_emb'], training=self.drop_emb))
             else:
                 emb_list.append(phoc_emb)
-        if 'fasttext' in embedding_names: #added by jin
+        if 'fasttext' in embedding_names:
             fast_emb = self.fast_embed(item_list['fasttext'])
             if 'PRE_ALIGN_befor_rnn' in self.opt:
                 item_list['fasttext_emb'] = fast_emb

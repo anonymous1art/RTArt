@@ -236,8 +236,8 @@ class SDNetTrainer(BaseTrainer):
         print('-----------------------------------------------')
         print("Initializing model...")
         self.setup_model(vocab_embedding)
-        print('Loading {}...'.format(os.path.join(self.opt['FEATURE_FOLDER'], 'test1-preprocessed.msgpack')))
-        with open(os.path.join(self.opt['FEATURE_FOLDER'], 'test1-preprocessed.msgpack'), 'rb') as f:
+        print('Loading {}...'.format(os.path.join(self.opt['FEATURE_FOLDER'], 'test-preprocessed.msgpack')))
+        with open(os.path.join(self.opt['FEATURE_FOLDER'], 'test-preprocessed.msgpack'), 'rb') as f:
             test_data = msgpack.load(f, encoding='utf8')
         assert 'RESUME' in self.opt
         model_path = os.path.join(self.opt['datadir'], self.opt['MODEL_PATH'])

@@ -1,6 +1,6 @@
 RESUME
 MODEL_PATH conf~/model/ANLS_best_model.pt
-Task    train,val,test
+Task   test
 preprocess_ocr_name ocr_PMTD_ASTER,ES_ocr
 preprocess_od_name  OD_bottom-up
 PREV_ANS	2

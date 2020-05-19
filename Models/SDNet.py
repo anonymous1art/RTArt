@@ -54,7 +54,7 @@ class SDNet(nn.Module):
             self.phoc_embed = nn.Embedding(self.vocab_size, self.phoc_dim, padding_idx = 1)
             self.phoc_embed.weight.data = phoc_embedding
 
-        if 'FastText' in self.opt
+        if 'FastText' in self.opt:
             self.vocab_size = int(opt['vocab_size'])
             self.fast_dim = int(opt['fast_dim'])
             self.fast_embed = nn.Embedding(self.vocab_size, self.fast_dim, padding_idx = 1)
